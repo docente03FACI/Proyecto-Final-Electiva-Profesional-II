@@ -13,7 +13,6 @@
 ---
 
 ## RÚBRICA — ENTREGA 1: Documento de Requerimientos y Arquitectura
-**Peso sugerido: 10% de la nota final | Puntaje total: 100 pts**
 
 | Criterio | Peso | Excelente (E) | Bueno (B) | Aceptable (A) | Insuficiente (I) |
 |---|---|---|---|---|---|
@@ -30,7 +29,6 @@
 ---
 
 ## RÚBRICA — ENTREGA 2: Modelado de BD + Backend Inicial
-**Peso sugerido: 20% de la nota final | Puntaje total: 100 pts**
 
 | Criterio | Peso | Excelente (E) | Bueno (B) | Aceptable (A) | Insuficiente (I) |
 |---|---|---|---|---|---|
@@ -46,7 +44,6 @@
 ---
 
 ## RÚBRICA — ENTREGA 3: Backend Completo + Seguridad + Postman
-**Peso sugerido: 20% de la nota final | Puntaje total: 100 pts**
 
 | Criterio | Peso | Excelente (E) | Bueno (B) | Aceptable (A) | Insuficiente (I) |
 |---|---|---|---|---|---|
@@ -62,7 +59,6 @@
 ---
 
 ## RÚBRICA — ENTREGA 4: Frontend Angular Integrado
-**Peso sugerido: 20% de la nota final | Puntaje total: 100 pts**
 
 | Criterio | Peso | Excelente (E) | Bueno (B) | Aceptable (A) | Insuficiente (I) |
 |---|---|---|---|---|---|
@@ -79,7 +75,7 @@
 ---
 
 ## RÚBRICA — ENTREGA 5: Proyecto Integrado, Desplegado y Sustentado
-**Peso sugerido: 30% de la nota final | Puntaje total: 100 pts**
+**Peso sugerido: 40% de la nota final | Puntaje total: 100 pts**
 
 | Criterio | Peso | Excelente (E) | Bueno (B) | Aceptable (A) | Insuficiente (I) |
 |---|---|---|---|---|---|
@@ -90,8 +86,6 @@
 | **Documento técnico consolidado** | 10 pts | Documento integra y actualiza las 4 entregas anteriores, coherente y profesional, incluye manual de usuario | Documento consolidado con actualizaciones parciales | Documento presente pero desactualizado respecto al producto final | Documento ausente o simple copia de entregas anteriores sin consolidar |
 | **Dominio conceptual en la sustentación** | 15 pts | Todos los integrantes explican con propiedad decisiones técnicas y responden preguntas con seguridad | La mayoría domina el proyecto; 1 integrante con vacíos menores | Dominio desigual entre integrantes, respuestas superficiales | Equipo no puede explicar decisiones técnicas propias |
 | **Trabajo en equipo y distribución de responsabilidades** | 10 pts | Evidencia clara (commits, roles) de participación equilibrada de todos los integrantes | Participación mayormente equilibrada con 1 integrante con menor aporte | Participación desigual, 1-2 integrantes concentran el trabajo | Evidencia de que 1 solo integrante desarrolló el proyecto |
-
-**Nota sobre trabajo en equipo:** Se recomienda complementar esta rúbrica con el **formato de autoevaluación/coevaluación** (puedo diseñarlo a continuación), de modo que la nota individual pueda ajustarse según el aporte real de cada integrante, especialmente en el criterio de "Trabajo en equipo".
 
 ---
 
@@ -107,10 +101,3 @@
 | **Total** | **100%** | — |
 
 ---
-
-## Siguientes pasos sugeridos
-
-- **Formato de autoevaluación/coevaluación** para ajustar la nota individual dentro del equipo
-- **Plantilla lista para usar** del documento de Entrega 1
-- **Guía técnica** paso a paso para conectar Spring Boot con AWS RDS
-- Adaptar estas rúbricas a un **formato de planilla Excel** con cálculo automático de notas
