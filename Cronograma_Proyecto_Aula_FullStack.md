@@ -227,7 +227,7 @@ Los equipos deberán diseñar, construir y desplegar una aplicación web fullsta
 - Repositorio final (backend + frontend)
 - Documento técnico consolidado (PDF)
 - Colección Postman final
-- Sustentación en vivo (15-20 min por equipo: demo + preguntas)
+- Sustentación del proyecto de aula
 - Formato de auto/coevaluación diligenciado
 
 **Criterios de evaluación sugeridos para la sustentación:**
@@ -239,20 +239,3 @@ Los equipos deberán diseñar, construir y desplegar una aplicación web fullsta
 
 ---
 
-## 5. Recomendaciones para el docente
-
-- **Semanas sin entrega** (1, 2, 4, 6, 7, 9, 11) son ideales para asesorías técnicas en clase, revisiones de avance informales (checkpoints rápidos de 5-10 min por equipo) y resolución de dudas puntuales sobre AWS RDS, Postman o configuración de entornos.
-- Se sugiere un **checkpoint de avance** a mitad de cada intervalo entre entregas para detectar equipos retrasados a tiempo.
-- Para AWS RDS, recomendar a los estudiantes usar la **capa gratuita (Free Tier)** y recordarles **eliminar la instancia al finalizar el curso** para evitar cargos.
-- Fomentar el uso de **GitHub con commits frecuentes** como evidencia de trabajo distribuido entre los integrantes del equipo (se puede usar como insumo para la coevaluación).
-- Considerar una **rúbrica única consolidada** (puedo generarla si la necesitas) que se aplique de forma consistente en las 5 entregas.
-
----
-
-## 6. Posibles siguientes pasos
-
-¿Quieres que profundice en alguno de estos puntos?
-- Rúbricas de evaluación detalladas (con niveles de desempeño) para cada entrega
-- Plantilla del documento de Entrega 1 (requerimientos y arquitectura) lista para usar
-- Guía técnica paso a paso para conectar Spring Boot con AWS RDS
-- Formato de autoevaluación/coevaluación de trabajo en equipo
