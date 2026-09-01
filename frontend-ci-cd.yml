@@ -1,0 +1,86 @@
+name: Frontend CI/CD - Angular
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'frontend/**'
+      - '.github/workflows/frontend-ci-cd.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'frontend/**'
+
+jobs:
+  build-and-test:
+    name: Build, Lint y Pruebas
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./frontend
+
+    steps:
+      - name: Descargar código del repositorio
+        uses: actions/checkout@v6
+
+      - name: Configurar Node.js 20
+        uses: actions/setup-node@v7
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Ejecutar lint
+        run: npm run lint --if-present
+
+      - name: Ejecutar pruebas unitarias (headless)
+        run: npm run test -- --watch=false --browsers=ChromeHeadless
+
+      - name: Generar build de producción
+        run: npm run build -- --configuration production
+
+      - name: Guardar el build como artefacto
+        uses: actions/upload-artifact@v6
+        with:
+          name: frontend-dist
+          # Ajustar "nombre-del-proyecto" según lo definido en angular.json
+          path: frontend/dist/**
+          retention-days: 3
+
+  deploy:
+    name: Desplegar a AWS S3 + CloudFront
+    needs: build-and-test
+    # Solo despliega cuando el push es directo a main (no en Pull Requests)
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar el build generado
+        uses: actions/download-artifact@v7
+        with:
+          name: frontend-dist
+          path: dist
+
+      - name: Configurar credenciales de AWS
+        uses: aws-actions/configure-aws-credentials@v5
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Sincronizar archivos con el bucket S3
+        run: |
+          # Ajustar la subcarpeta si angular.json genera dist/<nombre-proyecto>/browser
+          aws s3 sync dist/ s3://${{ secrets.S3_BUCKET_NAME }} --delete
+
+      - name: Invalidar caché de CloudFront
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
+            --paths "/*"
+
+      - name: Confirmar despliegue
+        run: echo "✅ Frontend desplegado correctamente en S3 + CloudFront"

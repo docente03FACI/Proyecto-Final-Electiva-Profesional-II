@@ -1,0 +1,92 @@
+name: Backend CI/CD - Spring Boot
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'backend/**'
+      - '.github/workflows/backend-ci-cd.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'backend/**'
+
+jobs:
+  build-and-test:
+    name: Build y Pruebas Unitarias
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend
+
+    steps:
+      - name: Descargar código del repositorio
+        uses: actions/checkout@v6
+
+      - name: Configurar JDK 17
+        uses: actions/setup-java@v5
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Compilar el proyecto
+        run: mvn -B compile
+
+      - name: Ejecutar pruebas unitarias
+        run: mvn -B test
+
+      - name: Empaquetar JAR
+        run: mvn -B package -DskipTests
+
+      - name: Normalizar nombre del JAR a app.jar
+        # Evita depender del nombre exacto (artifactId-version.jar) generado por Maven
+        run: |
+          cd target
+          JAR_FILE=$(ls *.jar | grep -v 'original' | head -n 1)
+          cp "$JAR_FILE" app.jar
+
+      - name: Guardar el JAR como artefacto
+        uses: actions/upload-artifact@v6
+        with:
+          name: backend-jar
+          path: backend/target/app.jar
+          retention-days: 3
+
+  deploy:
+    name: Desplegar a AWS Elastic Beanstalk
+    needs: build-and-test
+    # Solo despliega cuando el push es directo a main (no en Pull Requests)
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar código del repositorio
+        uses: actions/checkout@v6
+
+      - name: Descargar el JAR generado
+        uses: actions/download-artifact@v7
+        with:
+          name: backend-jar
+          path: backend/target
+
+      - name: Configurar credenciales de AWS
+        uses: aws-actions/configure-aws-credentials@v5
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Desplegar en Elastic Beanstalk
+        uses: einaregilsson/beanstalk-deploy@v22
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: ${{ secrets.EB_APPLICATION_NAME }}
+          environment_name: ${{ secrets.EB_ENVIRONMENT_NAME }}
+          region: ${{ secrets.AWS_REGION }}
+          version_label: "backend-${{ github.sha }}"
+          deployment_package: backend/target/app.jar
+
+      - name: Confirmar despliegue
+        run: echo "✅ Backend desplegado correctamente en Elastic Beanstalk"
