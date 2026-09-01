@@ -5,7 +5,7 @@
 
 | Nivel | Rango | Descripción general |
 |---|---|---|
-| **Excelente (E)** | 90-100% del puntaje del criterio | Cumple totalmente, con calidad profesional y detalles adicionales de valor |
+| **Excelente (E)** | 90-100% del puntajes del criterio | Cumple totalmente, con calidad profesional y detalles adicionales de valor |
 | **Bueno (B)** | 75-89% | Cumple lo esencial, con detalles menores por mejorar |
 | **Aceptable (A)** | 60-74% | Cumple parcialmente, con vacíos que afectan la calidad o completitud |
 | **Insuficiente (I)** | 0-59% | No cumple o presenta errores graves/ausencia del criterio |
