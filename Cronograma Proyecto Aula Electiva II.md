@@ -217,11 +217,10 @@ Los equipos deberán diseñar, construir y desplegar una aplicación web fullsta
 2. Backend y base de datos funcionando de forma estable contra AWS RDS
 3. Frontend totalmente integrado y navegable
 4. (Opcional/recomendado según el curso) Despliegue del backend en un servicio cloud (Render, Railway, AWS EC2/Elastic Beanstalk) y frontend en Vercel/Netlify/S3
-5. Documento técnico final consolidado (une y actualiza las 4 entregas anteriores)
-6. Manual de usuario básico
-7. Colección Postman final actualizada
-8. Preparación de sustentación: demo en vivo + defensa técnica de decisiones de arquitectura
-9. Autoevaluación y coevaluación de trabajo en equipo
+4.1. Despliegue del backend y frontend mediante el pipeline CI/CD automatizado construido en la Semana 11 (push a main → build → test → deploy automático)
+6. Documento técnico final consolidado (une y actualiza las 4 entregas anteriores)
+7. Manual de usuario básico
+8. Colección Postman final actualizada
 
 **Entregables:**
 - Repositorio final (backend + frontend)
